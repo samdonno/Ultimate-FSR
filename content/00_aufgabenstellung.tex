@@ -1,0 +1,88 @@
+
+\section*{Introduction}
+Playing a musical instrument involves complex motor tasks requiring certain postures, forces and coordinated movements. 
+To observe these, the state-of-the-art systems can provide quite accurate results, but they all need cumbersome infrastructure, which restricts their usage to lab settings.
+In the field of musicians' motion analysis, several video and marker based systems (see Ng et al.~\cite{Ng3MD2009}, Baader et al.~\cite{BaaderKazennikov2005-CoB} and \cite{GoeblPalmerTFA2008}) and electromagnetic positioning systems (like Pholemus) have been used until now. 
+Still underrepresented in performance science research are force measurements and sensor based analysis systems. 
+To improve these methods and making them more commonly usable, this thesis is focusing on the measurement precision of force sensitive resistors and linear potentiometers for finger force and position measurements for stringed instruments. 
+With this technology objective observations and enhanced technical and artistic playing possibilities will possible in any surroundings and circumstances. % by simpler use compared to existing systems. 
+% This thesis will evaluate the possibilities provided by capacitive finger position sensing (on the piano key), FSR based finger pressure sensing and wearable, wireless inertial measurement units (IMUs) for motion and hand/finger posture capturing.
+Optionally wireless data transmission e.g.~via MIDI will be developed to allow connectivity and sound generation on computers and mobile phones. 
+% Using wearable systems would open up plenty of possibilities to provide feedback to the musicians beginning with research during performances up to  practicing in daily life.
+% Furthermore, other fields like practicing Yoga, rehabilitation, dancing (cite own paper?), etc. would benefit from a motion capturing and analysis system which is completely wearable.
+\section*{Tasks}
+
+The tasks of this thesis can be divided into the following categories and subtasks:
+
+\subsection* {State of the Art and Literature Research}
+
+% \subsection* {Introduction}
+Sensing techniques in music are used in several fields. 
+A short overview about the applications and usage of these technologies is the first step including investigations of existing most common digital music interfaces like OSC and Midi. 
+% Further more the use of IMUs for finger sensing in musical instrument or alike interfaces playing should also be investigated and their feasibility evaluated. 
+
+\subsection* {Setup of the Sensor System}
+
+The goal of this part is to build a system consisting of FSR based force and linear potentiometer based position sensing and data fitting routines. 
+Off the shelf and if possible, self printed sensors will be tested ( https://shop.agic.cc/collections/products/products/prototype-ink-kit) . 
+With these sensors, the following experiments will be done: 
+% Specifically, we seek finger position and force sensing under consideration of finger inclination: 
+
+
+\subsection* {Experiments and Tests}
+
+\begin{itemize}
+\item  Pressure: a fitting algorithm for FSR based force raw values to N (Newton) already exists. But the influence of the contact size on the force measurement is still missing. We can estimate the contact area with a two sided measurement with linear potentiometers or with capacitive measurements. At least one of the two methods will be evaluated. 
+
+\item  Position Measurement 1: Also the position depends on the pressure. We will examine linear potentiometers and finger position sensing accuracy with different  finger pressing forces. The goal is to find a fitting for position estimation in sub mm (Millimeter) range to recognize e.g. which tone is played. 
+
+\item  Position Measurement 2: For note recognition (which is related to a specific finger position) on a musical instrument also the frequency can be used as ground truth. Frequency estimation usually takes too much calculation time for use real-time feedback scenarios, but it can be used to train the sensor based position recognition.  
+
+\item [Optional:] Improving the Midi/OSC out implementation, partly already available. 
+
+\item [Optional:] Adjusting the position raw values by changing the finger pressure on purpose. 
+
+\end{itemize}
+
+
+
+\section*{Realization of the Semester Thesis}
+
+\subsection*{Abstract}
+\begin{itemize}
+\item
+   \emph{Verification of Progress:} A metric for evaluating the progress is the comparison of the current achievements and the defined milestones. It has to be documented, if unexpected problems cause changes in the time schedule.
+  \item
+% HH: add workplace
+   \emph{Workspace:} A PC equipped workspace is available in room H64, ETZ. 
+     \item
+   \emph{Initial Presentation:} Prepare a short presentation of your project at the very beginning of the work (5 minutes). 
+  \item
+   \emph{Final Presentation:} Present your achieved results at the end of the semester in the institute's colloquium.
+  \item
+   \emph{Meeting:} Discuss your achieved results and current problems with your supervisor or co-supervisor in frequent meetings.
+ \end{itemize}
+ 
+ \subsection*{Release}
+ \begin{itemize}
+  \item
+   \emph{Report:} Provide three signed copies of your thesis to your supervisor until \AbgabeDatum \. Insert the present document to the beginning of the thesis.
+  \item
+   \emph{Homepage:} The most important results will be published on the institute's internal homepage. Prepare a short summary, therefore. 
+  \item 
+   \emph{Cleanup:} Clean up your local data, copy the most important to your Unix-Account. Burn all relevant data onto a CD-ROM and attach it to the report.
+ \end{itemize}
+
+\section*{Additional Information}
+ \begin{itemize}
+  \item
+   A guideline for Semester- and Diploma Thesis that are written at the Electronics Lab (IfE), ETH, can be found at: (\url{http://www2.ife.ee.ethz.ch/repository/sada/SADA_Anleitung.pdf}).
+ \end{itemize}
+
+\dateandsignature 
+
+\vspace{4cm}
+
+\pagebreak
+
+

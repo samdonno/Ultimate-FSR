@@ -1,0 +1,369 @@
+% **************************************************
+% Document Class Definition
+% **************************************************
+\documentclass[%
+	paper=A4,	  				% paper size
+	twoside,		   		    % oneside or twoside printing
+	openright,					% doublepage cleaning ends up right side
+	parskip=half,				% spacing value / method for paragraphs
+	chapterprefix=true,			% prefix for chapter marks
+	10pt,						% font size
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=off,				% 
+	captions=tableabove,		% display table captions above the float env
+	draft=false,				% value for draft version
+]{scrreprt}%
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{Improving the Measurement Accuracy of FSR Based Finger Force and Finger Position Measurements for String Instruments}
+\newcommand{\thesisName}{Nico Haenni}
+\newcommand{\thesisSubject}{Semester Thesis}
+\newcommand{\thesisDate}{July 2018}
+
+\newcommand{\thesisFirstSupervisor}{Tobias Grosshauser, ETZ H63}
+\newcommand{\thesisSecondSupervisor}{Alberto Calatroni, ETZ H63}
+\newcommand{\thesisUniversity}{\protect{ETH Z\"urich}}
+\newcommand{\thesisUniversityDepartment}{Department of Information Technology and Electrical Engineering}
+\newcommand{\thesisUniversityInstitute}{Institute for Integrated Circuits}
+
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+\usepackage[utf8]{inputenc}		% defines file's character encoding
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\usepackage[pdftex,dvipsnames]{xcolor}  %colored text etc...
+
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}  % package to add notes in text
+%\usepackage[disable]{todonotes}  %uncomment to hide notes
+
+
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+
+
+\usepackage[					% clean thesis style
+	figuresep=colon,%
+	sansserif=false,%
+	hangfigurecaption=false,%
+	hangsection=true,%
+	hangsubsection=true,%
+	colorize=full,%
+	colortheme=bluegreen,%
+	bibsys=biber,%
+	bibfile=bib-refs.bib,%
+	bibstyle=ieee,%
+]{cleanthesis}
+\addbibresource{bib-refs.bib}
+
+
+\usepackage{xfrac} % slanted fractions
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+%\usepackage[norelsize, ruled]{algorithm2e} % Provides the algorithm environment
+\usepackage{tabularx} % Provides stretchable tables.
+%\usepackage{bm} % Provides bold greek math symbols.
+\usepackage{pdfpages} % Allows to include pdf documents.
+\usepackage{pdflscape} % Rotate PDF pages in output
+\usepackage{booktabs} % Provides nicer tables than the standard tables.
+%\usepackage[figuresleft]{rotating}
+%\usepackage{capt-of}% Provides more customizeable captions.
+%\usepackage{caption}
+\usepackage{graphicx} % Graphic Inclusion
+\graphicspath{ {images/} }  
+
+\usepackage[binary-units=true, detect-all]{siunitx} % SI Units
+\usepackage{subcaption} % Provides the <subfigure> environment for placing multiple figures side-by-side and add separate Captions.
+\usepackage{mathtools}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\DeclareSIUnit\CHF{CHF}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+\hypersetup{					% setup the hyperref-package options
+	pdftitle={\thesisTitle},	% 	- title (PDF meta)
+	pdfsubject={\thesisSubject},% 	- subject (PDF meta)
+	pdfauthor={\thesisName},	% 	- author (PDF meta)
+	plainpages=false,			% 	-
+	colorlinks=false,			% 	- colorize links?
+	pdfborder={0 0 0},			% 	-
+	breaklinks=true,			% 	- allow line break inside links
+	bookmarksnumbered=true,		%
+	bookmarksopen=true			%
+}
+
+%%%% 
+
+%% Multiple Columns (for lists, etc..)
+\usepackage{multicol}
+
+%% Sideways Figures in Appendix
+\usepackage{rotating}
+
+%% Code Listing in Appendix
+\usepackage{listings}
+
+\lstset{
+ basicstyle=\fontsize{8}{9}\ttfamily,
+ commentstyle=\color{blue},
+ keywordstyle=\color{red},
+ frame=single,
+ breaklines=true,
+ keepspaces=true,
+ breakindent= 0pt,
+ columns = fullflexible
+}
+
+%% Typographic Corrections
+\usepackage{microtype}
+
+%% Fine-Control over Table of Contents (reduce Spacing)
+\usepackage{tocloft}
+\setlength{\cftbeforechapskip}{.9ex}
+\setlength{\cftbeforesecskip}{.6ex}
+\setlength{\cftbeforetoctitleskip}{.4ex}
+\setlength{\cftaftertoctitleskip}{3em}
+
+
+%% sloppy microtype paragraph, slightly compresses words.
+%% Use as {\microtypecontext{expansion=sloppy}% your text...}
+\SetExpansion
+ [ context = sloppy,
+ stretch = 20,
+ shrink = 45,
+ step = 1 ]
+ { encoding = {OT1,T1,TS1} }
+ { }
+
+% force float to exact location with [H] (used in appendix)
+\usepackage{float}
+
+% highlight source code
+\usepackage[]{minted}
+\usemintedstyle{friendly}
+\setminted{autogobble,breaklines,fontsize=\small,frame=lines}
+\setmintedinline{breaklines=false,fontsize=\normalsize,frame=none}
+\def\cppcode#1{\mintinline{cpp}{#1}}
+
+% Remove large vertical spacing in enumerations
+\usepackage[inline]{enumitem}
+\setlist{leftmargin=*} 
+\setlist[1]{labelindent=\parindent} 
+\setlist{itemsep=0.7ex, parsep=0pt} % no vertical list separation
+
+% Nicely Typeset C++, SqueezeNet++
+\def\cpp{C{}\texttt{++}\xspace}
+\def\squeezenetpp{SqueezeNet{}\texttt{++}\xspace}
+\def\caffe{Caffe\xspace}
+
+% Shortcuts for w/h/ch_in/out -> \wout, \hout, \chin, ...
+\def\hin{\ensuremath{h_\textrm{in}}\xspace}
+\def\win{\ensuremath{w_\textrm{in}}\xspace}
+\def\chin{\ensuremath{ch_\textrm{in}}\xspace}
+\def\hout{\ensuremath{h_\textrm{out}}\xspace}
+\def\wout{\ensuremath{w_\textrm{out}}\xspace}
+\def\chout{\ensuremath{ch_\textrm{out}}\xspace}
+\def\npe{\ensuremath{N_\textrm{PE}}\xspace}
+
+
+% Shortcut for $\times$
+\def\x{$\times$}
+
+% Hypenation Hints
+\hyphenation{Squeeze-Net Zynq-Net In-cep-tion}
+
+% Appendix Package 
+\usepackage[title,titletoc]{appendix}
+
+%% References with automatic Keywords (fig, sec, chap, ...)
+\usepackage{cleveref}
+%% Define "appendix" for cleveref
+\crefname{appsec}{appendix}{appendices}
+
+
+%%%%%%%% ADD LIST OF FIGURES / TABLES TO TOC
+\KOMAoptions{listof=totoc}
+
+
+% *******************************************
+% ** Enable Vertical Lines in algorithmicx **
+% *******************************************
+\makeatletter
+% start with some helper code
+% This is the vertical rule that is inserted
+\newcommand*{\algrule}[1][\algorithmicindent]{%
+  \makebox[#1][l]{%
+    \hspace*{.3em}% <------------- This is where the rule starts from
+    \vrule height .75\baselineskip depth .25\baselineskip
+  }
+  \hspace*{-.6em}
+}
+
+\newcount\ALG@printindent@tempcnta
+\def\ALG@printindent{%
+    \ifnum \theALG@nested>0% is there anything to print
+    \ifx\ALG@text\ALG@x@notext% is this an end group without any text?
+    % do nothing
+    \addvspace{-3pt}
+    \else
+    \unskip
+    % draw a rule for each indent level
+    \ALG@printindent@tempcnta=1
+    \loop
+    \algrule[\csname ALG@ind@\the\ALG@printindent@tempcnta\endcsname]%
+    \advance \ALG@printindent@tempcnta 1
+    \ifnum \ALG@printindent@tempcnta<\numexpr\theALG@nested+1\relax
+    \repeat
+    \fi
+    \fi
+}
+% the following line injects our new indent handling code in place of the default spacing
+\patchcmd{\ALG@doentity}{\noindent\hskip\ALG@tlm}{\ALG@printindent}{}{\errmessage{failed to patch}}
+\patchcmd{\ALG@doentity}{\item[]\nointerlineskip}{}{}{} % no spurious vertical space
+% end vertical rule patch for algorithmicx
+\makeatother
+
+% *************************************************
+% Make a Glossary
+% *************************************************
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8} % color that matches the theme
+
+\usepackage[acronyms,toc,style=super,nonumberlist,nopostdot,nogroupskip]{glossaries}
+%\renewcommand{\glsgroupskip}{}  %undoes grouping of acronyms starting with the same letter
+\renewcommand{\glsnamefont}[1]{\textcolor{bluegray}{\textbf{#1}}}
+
+\makenoidxglossaries
+\loadglsentries{glossary}
+
+
+
+
+% **************************************************
+% Document CONTENT
+% **************************************************
+\begin{document}
+
+% --------------------------
+% rename document parts
+% --------------------------
+\renewcaptionname{english}{\figurename}{Fig.}
+\renewcaptionname{english}{\tablename}{Tab.}
+
+
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
+\pagestyle{empty}				% no header or footers
+\input{content/titlepage}		% INCLUDE: title page
+\cleardoublepage
+
+\pagestyle{plain}				% display just page numbers
+\input{content/01_abstract.tex}		% INCLUDE: the abstract
+\cleardoublepage
+
+%
+%\input{content/acknowledgement} % INCLUDE: acknowledgement (not yet)
+%\cleardoublepage
+
+%
+\setcounter{tocdepth}{2}	 	% define depth of toc
+\tableofcontents				% display table of contents
+
+\cleardoublepage
+
+\printnoidxglossary[type=\acronymtype]
+\printnoidxglossary[type=math]
+
+\cleardoublepage
+
+%%% LIST OF FIGURES
+%\addtocontents{lof}{\protect\addcontentsline{toc}{chapter}{\listfigurename}}
+%\phantomsection
+\listoffigures 
+
+\cleardoublepage
+
+%%% LIST OF TABLES
+%\addtocontents{lot}{\protect\addcontentsline{toc}{chapter}{\listtablename}}
+%\phantomsection
+%\listoftables
+
+%\cleardoublepage
+
+
+% --------------------------
+% Body matter
+% --------------------------
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{1}			% set page counter
+\pagestyle{maincontentstyle} 	% fancy header and footer
+
+
+%\input{content/00_aufgabenstellung.tex}
+\input{content/01_abstract.tex}
+\input{content/2_overview.tex}
+\input{content/3_proposedsystem.tex}
+\input{content/4_results.tex}
+
+
+
+\cleardoublepage
+
+
+%%%%%%%%%% APPENDIX %%%%%%%%%%%%%%%%
+
+\begin{appendices}
+\let\cleardoublepage\clearpage % Begin Appendix Chapters on next Page (left or right)
+\crefalias{section}{appsec} % Use cleveref "appendix A.1, appendix C, ..." for sections and chapters in appendix
+\crefalias{chapter}{appsec}
+\input{content/appendix}   %marked as comment as file not yet existent (Christian)
+
+\end{appendices}
+
+
+{%
+\setstretch{1.1}
+\renewcommand{\bibfont}{\normalfont\small}
+\setlength{\biblabelsep}{0pt}
+\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
+\printbibliography[nottype=online]						
+\printbibliography[heading=subbibliography,title={Websites},type=online] 
+
+}
+
+
+% --------------------------
+% List of notes in Text
+% --------------------------
+%\newpage
+%\listoftodos[Notes]
+
+% **************************************************
+% End of Document CONTENT
+% **************************************************
+\end{document}
